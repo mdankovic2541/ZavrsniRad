@@ -44,7 +44,7 @@
         
         
         <!-- Ovdje navodimo naše mapirane klase -->
-         <mapping class="hr.dankovic.zavrsnirad.model.Osoba" />
+         <mapping class="hr.dankovic.zavrsnirad.model.Vozac" />
                 
         
     </session-factory>

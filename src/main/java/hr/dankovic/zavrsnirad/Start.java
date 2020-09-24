@@ -5,13 +5,16 @@
  */
 package hr.dankovic.zavrsnirad;
 
+import hr.dankovic.zavrsnirad.utility.HibernateUtil;
+
+
 /**
  *
  * @author Marko
  */
 public class Start {
     public static void main(String[] args) {
-        System.out.println("Hello World");
+       HibernateUtil.getSessionFactory().openSession();
     }
    
 }

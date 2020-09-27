@@ -6,6 +6,7 @@
 package hr.dankovic.zavrsnirad;
 
 import hr.dankovic.zavrsnirad.utility.HibernateUtil;
+import hr.dankovic.zavrsnirad.utility.PocetniInsert;
 
 
 /**
@@ -14,7 +15,7 @@ import hr.dankovic.zavrsnirad.utility.HibernateUtil;
  */
 public class Start {
     public static void main(String[] args) {
-       HibernateUtil.getSessionFactory().openSession();
+        PocetniInsert.izvedi();
     }
    
 }

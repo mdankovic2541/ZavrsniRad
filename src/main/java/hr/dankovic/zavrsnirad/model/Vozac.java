@@ -6,25 +6,72 @@
 package hr.dankovic.zavrsnirad.model;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.ManyToOne;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
  * @author Marko
  */
+
 @Entity
-@Table (name = "Vozac")
-public class Vozac{
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Vozac extends Entitet{
     private String ime;
     private String prezime;
     private Integer dob;
     private String spol;
-    private Integer vozilo;
+    
+
+    @OneToOne
+    private Vozilo vozilo;
+
+    public String getIme() {
+        return ime;
+    }
+
+    public void setIme(String ime) {
+        this.ime = ime;
+    }
+
+    public String getPrezime() {
+        return prezime;
+    }
+
+    public void setPrezime(String prezime) {
+        this.prezime = prezime;
+    }
+
+    public Integer getDob() {
+        return dob;
+    }
+
+    public void setDob(Integer dob) {
+        this.dob = dob;
+    }
+
+    public String getSpol() {
+        return spol;
+    }
+
+    public void setSpol(String spol) {
+        this.spol = spol;
+    }
+
+    public Vozilo getVozilo() {
+        return vozilo;
+    }
+
+    public void setVozilo(Vozilo vozilo) {
+        this.vozilo = vozilo;
+    }
+
+ 
+
+    
+
+  
+    
+    
 }

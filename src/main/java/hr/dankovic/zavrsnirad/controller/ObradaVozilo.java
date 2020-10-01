@@ -8,6 +8,7 @@ package hr.dankovic.zavrsnirad.controller;
 import hr.dankovic.zavrsnirad.model.Vozilo;
 import hr.dankovic.zavrsnirad.utility.DankovicException;
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  *
@@ -19,9 +20,18 @@ public class ObradaVozilo extends Obrada<Vozilo>{
         super(vozilo);
     }
 
-    
+    public ObradaVozilo() {
+        super();
+        
+    }
 
     
+
+      @Override
+    public List<Vozilo> getPodaci() {
+            return session.createQuery("from Vozilo").list();
+
+    }
     
     
     @Override
@@ -81,6 +91,8 @@ public class ObradaVozilo extends Obrada<Vozilo>{
         } 
         
     }
+
+  
     
     
     

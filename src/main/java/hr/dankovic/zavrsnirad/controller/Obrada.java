@@ -7,6 +7,7 @@ package hr.dankovic.zavrsnirad.controller;
 
 import hr.dankovic.zavrsnirad.utility.DankovicException;
 import hr.dankovic.zavrsnirad.utility.HibernateUtil;
+import java.util.List;
 import org.hibernate.Session;
 
 /**
@@ -19,9 +20,17 @@ public abstract class Obrada<T> {
     protected Session session;
 
     protected abstract void kontrolaCreate() throws DankovicException; 
-     protected abstract void kontrolaUpdate() throws DankovicException;  
-     protected abstract void kontrolaDelete() throws DankovicException;  
+    protected abstract void kontrolaUpdate() throws DankovicException;  
+    protected abstract void kontrolaDelete() throws DankovicException;  
+    public abstract List<T> getPodaci();
 
+    public T getEntitet() {
+        return entitet;
+    }
+
+    public void setEntitet(T entitet) {
+        this.entitet = entitet;
+    }
    
      
      public Obrada(T entitet) {
@@ -37,7 +46,17 @@ public abstract class Obrada<T> {
         kontrolaCreate();
         save();
         return entitet;
-       }          
+       }   
+    public T createAll(List<T> lista) throws DankovicException{
+       session.beginTransaction();
+        for( T t : lista){
+           setEntitet(t);
+           kontrolaCreate();
+           session.save(t);
+       }
+              session.getTransaction().commit();
+        return entitet;
+       }  
       public T update() throws DankovicException{
         kontrolaUpdate();
         save();

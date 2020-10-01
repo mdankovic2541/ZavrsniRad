@@ -18,17 +18,21 @@ import us.codecraft.xsoup.Xsoup;
 public class Test {
     
     public static void main(String[] args) {
-        try {
-             String html = new Scanner(new URL("http://oib.itcentrala.com/oib-generator/").openStream(), "UTF-8").useDelimiter("\\A").next();
-
-        Document document = Jsoup.parse(html);
-
-        String result = Xsoup.compile("/html/body/div[1]/div[1]/text()").evaluate(document).get();
-        System.out.println(result);
-        } catch (Exception e) {
-            
-        }
-       
+        System.out.println("ČĆŠĐŽšđžčć"
+                + ""
+                + ""
+                + "");
+//        try {
+//             String html = new Scanner(new URL("http://oib.itcentrala.com/oib-generator/").openStream(), "UTF-8").useDelimiter("\\A").next();
+//
+//        Document document = Jsoup.parse(html);
+//
+//        String result = Xsoup.compile("/html/body/div[1]/div[1]/text()").evaluate(document).get();
+//        System.out.println(result);
+//        } catch (Exception e) {
+//            
+//        }
+//       
     }
     
 }

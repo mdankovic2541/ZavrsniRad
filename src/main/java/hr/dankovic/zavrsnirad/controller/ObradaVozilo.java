@@ -52,7 +52,7 @@ public class ObradaVozilo extends Obrada<Vozilo>{
 
     private void kontrolaNaziv() throws DankovicException {
      kontrolaNull(entitet.getNaziv(),"Naziv nije definiran!");  
-    if(entitet.getNaziv().isEmpty()){
+    if(entitet.getNaziv().trim().isEmpty()){
             throw new DankovicException("Naziv nije postavljen,unijeti naziv!");
         }  
     

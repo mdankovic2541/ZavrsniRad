@@ -5,31 +5,42 @@
  */
 package hr.dankovic.zavrsnirad.controller;
 
-import hr.dankovic.zavrsnirad.model.Vozac;
+import hr.dankovic.zavrsnirad.model.Operater;
 import hr.dankovic.zavrsnirad.utility.DankovicException;
 import java.util.List;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *
  * @author Marko
  */
-public class ObradaVozac extends Obrada<Vozac> {
+public class ObradaOperater extends Obrada<Operater> {
+
+    public Operater autoriziraj(String email, char[] lozinka) {
+        Operater operater = (Operater) session.createQuery(
+                " from Operater o where o.email=:email")
+                .setParameter("email", email).getSingleResult();
+        if (operater == null) {
+            return null;
+        }
+        return BCrypt.checkpw(new String(lozinka), operater.getLozinka())
+                ? operater : null;
+    }
 
     @Override
-    public List<Vozac> getPodaci() {
-        return session.createQuery("from Vozac").list();
+    public List<Operater> getPodaci() {
+        return session.createQuery("from Operater").list();
     }
 
     @Override
     protected void kontrolaCreate() throws DankovicException {
         kontrolaIme();
         kontrolaPrezime();
-        kontrolaSpol();
-        kontrolaDob();
     }
 
     @Override
     protected void kontrolaUpdate() throws DankovicException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -42,21 +53,9 @@ public class ObradaVozac extends Obrada<Vozac> {
         }
     }
 
-    protected void kontrolaSpol() throws DankovicException {
-        if (entitet.getSpol() == null || entitet.getSpol().trim().isEmpty()) {
-            throw new DankovicException("Spol obavezan!");
-        }
-    }
-
     protected void kontrolaPrezime() throws DankovicException {
         if (entitet.getPrezime() == null || entitet.getPrezime().trim().isEmpty()) {
             throw new DankovicException("Prezime obavezno!");
-        }
-    }
-
-    protected void kontrolaDob() throws DankovicException {
-        if (entitet.getDob() == null) {
-            throw new DankovicException("Dob obavezna!");
         }
     }
 

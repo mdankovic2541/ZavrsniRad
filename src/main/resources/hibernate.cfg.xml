@@ -44,6 +44,7 @@
         
         
         <!-- Ovdje navodimo naše mapirane klase -->
+               <mapping class="hr.dankovic.zavrsnirad.model.Operater" />
                <mapping class="hr.dankovic.zavrsnirad.model.Vozilo" />
                <mapping class="hr.dankovic.zavrsnirad.model.Vozac" />
                <mapping class="hr.dankovic.zavrsnirad.model.Voznja" />

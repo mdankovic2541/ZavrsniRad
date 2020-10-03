@@ -12,6 +12,8 @@ import hr.dankovic.zavrsnirad.model.Vozilo;
 import hr.dankovic.zavrsnirad.utility.DankovicException;
 import hr.dankovic.zavrsnirad.utility.HibernateUtil;
 import hr.dankovic.zavrsnirad.utility.PocetniInsert;
+import hr.dankovic.zavrsnirad.view.Autorizacija;
+import hr.dankovic.zavrsnirad.view.Izbornik;
 import java.time.Clock;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,20 +28,24 @@ public class Start {
 
     public static void main(String[] args) {
 
-        //PocetniInsert.izvedi(); 
-        ObradaVozac obradaVozac = new ObradaVozac();
-
-//       for(Vozac v: obradaVozac.getPodaci()){
-//           System.out.println(v.getIme() + " " + v.getPrezime());
-//       }
-        Vozac v = new Vozac();
-
-        obradaVozac.setEntitet(v);
-        try {
-            obradaVozac.create();
-        } catch (DankovicException ex) {
-            System.out.println(ex.getPoruka());
-        }
+        
+        new Autorizacija().setVisible(true);
+        
+        
+      // PocetniInsert.adminOperater(); 
+//        ObradaVozac obradaVozac = new ObradaVozac();
+//
+////       for(Vozac v: obradaVozac.getPodaci()){
+////           System.out.println(v.getIme() + " " + v.getPrezime());
+////       }
+//        Vozac v = new Vozac();
+//
+//        obradaVozac.setEntitet(v);
+//        try {
+//            obradaVozac.create();
+//        } catch (DankovicException ex) {
+//            System.out.println(ex.getPoruka());
+//        }
 
         // Vozilo s;
 //      ObradaVozilo obradaVozilo = new ObradaVozilo();

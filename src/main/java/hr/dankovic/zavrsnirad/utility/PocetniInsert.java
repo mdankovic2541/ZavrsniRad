@@ -34,7 +34,7 @@ public class PocetniInsert {
         operater.setUloga("oper");
         operater.setEmail("mdankovic@gmail.com");
         operater.setLozinka(BCrypt.hashpw("m", BCrypt.gensalt()));
-
+       
         ObradaOperater oo = new ObradaOperater();
         oo.setEntitet(operater);
         try {
@@ -86,23 +86,33 @@ public class PocetniInsert {
         List<Voznja> voznjaRENAULT = new ArrayList<>();
         for (int i = 0; i < 50; i++) {
             voznja = new Voznja();
-            voznja.setBroj_putnika(2);
-            voznja.setTrajanje(30);
-            voznja.setOdrediste("Bolnica");
-            voznja.setPolaziste("Kolodvor");
-            voznja.setCijena(25);
-
+         
             if (i < 25) {
                 voznjaAUDI.add(voznja);
                 voznja.setVozac(vozacAUDI);
+                voznja.setOdrediste("KBC Osijek");
+                voznja.setPolaziste("Sjenjak 32");
+                voznja.setBroj_putnika(4);
+                voznja.setTrajanje(14);
+                voznja.setCijena(25);
             }
             if (i < 40 && i >= 25) {
                 voznjaBMW.add(voznja);
                 voznja.setVozac(vozacBMW);
+                voznja.setOdrediste("Medulinska 12");
+                voznja.setPolaziste("Kolodvor");
+                voznja.setBroj_putnika(3);
+                voznja.setTrajanje(23);
+                voznja.setCijena(35);
             }
             if (i < 50 && i >= 40) {
                 voznjaRENAULT.add(voznja);
                 voznja.setVozac(vozacRENAULT);
+                voznja.setOdrediste("Vukovarska 74");
+                voznja.setPolaziste("FERIT [K]");
+                voznja.setBroj_putnika(2);
+                voznja.setTrajanje(8);
+                voznja.setCijena(15);
             }
             session.save(voznja);
         }

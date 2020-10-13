@@ -5,6 +5,12 @@
  */
 package hr.dankovic.zavrsnirad.view;
 
+import hr.dankovic.zavrsnirad.controller.ObradaVozac;
+import hr.dankovic.zavrsnirad.controller.ObradaVozilo;
+import hr.dankovic.zavrsnirad.controller.ObradaVoznja;
+import hr.dankovic.zavrsnirad.model.Vozac;
+import hr.dankovic.zavrsnirad.model.Vozilo;
+import hr.dankovic.zavrsnirad.model.Voznja;
 import java.awt.BorderLayout;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -140,7 +146,7 @@ public class Izbornik extends javax.swing.JFrame {
     }//GEN-LAST:event_jmiIzlazActionPerformed
 
     private void jmiVozilaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiVozilaActionPerformed
-        // TODO add your handling code here:
+        new Vozila().setVisible(true);
     }//GEN-LAST:event_jmiVozilaActionPerformed
 
     private void jmiVozaciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiVozaciActionPerformed
@@ -169,22 +175,23 @@ public class Izbornik extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void pripremiGraf() {
+
+        ObradaVoznja ov = new ObradaVoznja();
 //        XYSeries series = new XYSeries("XY Chart");
 //        XYSeriesCollection dataset = new XYSeriesCollection(series);
 //        JFreeChart chart = ChartFactory.createTimeSeriesChart("Testing Chart", "Date", "Average Profit", dataset);
-        DefaultPieDataset dataset = new DefaultPieDataset();    
-        dataset.setValue("AUDI ", 8);
-        dataset.setValue("BMW ", 13);
-        dataset.setValue("RENAULT", 11);
-       
+
+        DefaultPieDataset dataset = new DefaultPieDataset();
+        for (Voznja v : ov.getPodaci()) {
+            dataset.setValue(v.getPolaziste() + "->" + v.getOdrediste(), v.getBroj_putnika());
+        }
 
         JFreeChart chart = ChartFactory.createPieChart(
-                "Vozaci po vozilima" , // chart title
-                dataset,      // data
-                true,   //include legend
+                "Odrađene vožnje - broj putnika", // chart title
+                dataset, // data
+                true, //include legend
                 true,
                 false);
-        
 
         ChartPanel cp = new ChartPanel(chart);
 

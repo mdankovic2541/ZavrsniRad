@@ -44,6 +44,11 @@ public class Vozilo extends Entitet{
     public void setTablica(String tablica) {
         this.tablica = tablica;
     }
+
+    @Override
+    public String toString() {
+        return getNaziv();
+    }
     
     
 }

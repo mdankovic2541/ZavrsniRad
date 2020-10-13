@@ -32,7 +32,7 @@ public class Start {
         new Autorizacija().setVisible(true);
         
         
-      // PocetniInsert.adminOperater(); 
+      //PocetniInsert.izvedi();
 //        ObradaVozac obradaVozac = new ObradaVozac();
 //
 ////       for(Vozac v: obradaVozac.getPodaci()){

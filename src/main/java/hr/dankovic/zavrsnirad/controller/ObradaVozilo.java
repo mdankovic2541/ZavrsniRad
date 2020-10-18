@@ -38,6 +38,7 @@ public class ObradaVozilo extends Obrada<Vozilo>{
     protected void kontrolaCreate() throws DankovicException {
         kontrolaNaziv();
         kontrolaTablice();
+        kontrolaBoja();
     }
 
     @Override
@@ -75,7 +76,10 @@ public class ObradaVozilo extends Obrada<Vozilo>{
     private void kontrolaTablice() throws DankovicException{
         
         kontrolaNull(entitet.getTablica(),"Tablica nije definirana!");
-         if(entitet.getNaziv().length()> 15){
+        if(entitet.getTablica().trim().isEmpty()){
+            throw new DankovicException("Tablica nije postavljena,unijeti tablicu!");
+        } 
+         if(entitet.getTablica().length()> 15){
             throw new DankovicException("Tablica ne može biti veća od 15 znakova!");
         }
         
@@ -83,7 +87,13 @@ public class ObradaVozilo extends Obrada<Vozilo>{
         }
     
     
-    
+    private void kontrolaBoja() throws DankovicException {
+    kontrolaNull(entitet.getBoja(),"Boja nije definirana!");
+        if(entitet.getBoja().trim().isEmpty()){
+            throw new DankovicException("Boja nije postavljena,unijeti boju!");
+        }   
+    }
+
     private void kontrolaNull(Object o, String poruka)throws DankovicException{
        
         if(o == null){
@@ -92,6 +102,7 @@ public class ObradaVozilo extends Obrada<Vozilo>{
         
     }
 
+    
   
     
     

@@ -5,6 +5,8 @@
  */
 package hr.dankovic.zavrsnirad.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
@@ -22,8 +24,8 @@ public class Vozac extends Entitet{
     private String prezime;
     private Integer dob;
     private String spol;
-    
 
+  
     @OneToOne
     private Vozilo vozilo;
 

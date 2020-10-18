@@ -21,6 +21,8 @@ public class Vozilo extends Entitet{
     private String boja;
     private String tablica;
 
+    
+    
     public String getNaziv() {
         return naziv;
     }

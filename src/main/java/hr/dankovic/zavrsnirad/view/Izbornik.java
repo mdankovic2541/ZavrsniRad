@@ -150,11 +150,10 @@ public class Izbornik extends javax.swing.JFrame {
     }//GEN-LAST:event_jmiVozilaActionPerformed
 
     private void jmiVozaciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiVozaciActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jmiVozaciActionPerformed
+    new Vozaci().setVisible(true);    }//GEN-LAST:event_jmiVozaciActionPerformed
 
     private void jmiVoznjeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiVoznjeActionPerformed
-        // TODO add your handling code here:
+        new Voznja().setVisible(true);
     }//GEN-LAST:event_jmiVoznjeActionPerformed
 
     private void jmiOperateriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiOperateriActionPerformed

@@ -5,31 +5,41 @@
  */
 package hr.dankovic.zavrsnirad.view;
 
-import hr.dankovic.zavrsnirad.controller.ObradaVozilo;
-import hr.dankovic.zavrsnirad.model.Vozilo;
+import hr.dankovic.zavrsnirad.controller.ObradaVozac;
+import hr.dankovic.zavrsnirad.model.Vozac;
 import hr.dankovic.zavrsnirad.utility.DankovicException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.awt.Component;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
+import javax.swing.JComponent;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
 
 /**
  *
  * @author Marko
  */
-public class Vozila extends javax.swing.JFrame {
+public class Vozaci extends javax.swing.JFrame {
     
     
-       private ObradaVozilo obrada;
-       private Vozilo entitet;
+       private ObradaVozac obrada;
+       private Vozac entitet;
     /**
-     * Creates new form Vozila
+     * Creates new form Vozaci
      */
-    public Vozila() {
+    public Vozaci() {
         initComponents();
-        obrada = new ObradaVozilo();
-        setTitle(Aplikacija.operater.getIme() + " " + Aplikacija.operater.getPrezime() + " - Vozila");
+        lstPodaci.setCellRenderer(new VozacCellRenderer());
+        obrada = new ObradaVozac();
+        setTitle(Aplikacija.operater.getIme() + " " + Aplikacija.operater.getPrezime() + " - Vozači");
 
         ucitajPodatke();
+       
+      
+        
+        
     }
 
     /**
@@ -43,17 +53,19 @@ public class Vozila extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         lstPodaci = new javax.swing.JList<>();
-        jPanel1 = new javax.swing.JPanel();
+        pnlPodaci = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtNaziv = new javax.swing.JTextField();
+        txtIme = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        txtBoja = new javax.swing.JTextField();
+        txtPrezime = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtTablica = new javax.swing.JTextField();
+        txtDob = new javax.swing.JTextField();
         lblPoruka = new javax.swing.JLabel();
         btnDodaj = new javax.swing.JButton();
         btnPromijeni = new javax.swing.JButton();
         btnObrisi = new javax.swing.JButton();
+        txtSpol = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -64,27 +76,27 @@ public class Vozila extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(lstPodaci);
 
-        jLabel1.setText("Naziv");
+        jLabel1.setText("Ime");
 
-        txtNaziv.addActionListener(new java.awt.event.ActionListener() {
+        txtIme.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNazivActionPerformed(evt);
+                txtImeActionPerformed(evt);
             }
         });
 
-        jLabel2.setText("Boja");
+        jLabel2.setText("Prezime");
 
-        txtBoja.addActionListener(new java.awt.event.ActionListener() {
+        txtPrezime.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBojaActionPerformed(evt);
+                txtPrezimeActionPerformed(evt);
             }
         });
 
-        jLabel3.setText("Tablica");
+        jLabel3.setText("Dob");
 
-        txtTablica.addActionListener(new java.awt.event.ActionListener() {
+        txtDob.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTablicaActionPerformed(evt);
+                txtDobActionPerformed(evt);
             }
         });
 
@@ -109,64 +121,67 @@ public class Vozila extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        txtSpol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSpolActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Spol");
+
+        javax.swing.GroupLayout pnlPodaciLayout = new javax.swing.GroupLayout(pnlPodaci);
+        pnlPodaci.setLayout(pnlPodaciLayout);
+        pnlPodaciLayout.setHorizontalGroup(
+            pnlPodaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblPoruka, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(txtBoja))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(txtTablica))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNaziv)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(pnlPodaciLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(pnlPodaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtPrezime, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtDob, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtIme)
+                    .addGroup(pnlPodaciLayout.createSequentialGroup()
                         .addComponent(btnDodaj, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnPromijeni)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnObrisi, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnObrisi, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE))
+                    .addComponent(txtSpol, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pnlPodaciLayout.createSequentialGroup()
+                        .addGroup(pnlPodaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        pnlPodaciLayout.setVerticalGroup(
+            pnlPodaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlPodaciLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNaziv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtIme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
-                .addComponent(txtBoja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
-                .addComponent(txtTablica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtDob, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(txtSpol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addGroup(pnlPodaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDodaj)
                     .addComponent(btnPromijeni)
                     .addComponent(btnObrisi))
-                .addGap(40, 40, 40)
-                .addComponent(lblPoruka, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblPoruka, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -177,7 +192,7 @@ public class Vozila extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlPodaci, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -185,8 +200,8 @@ public class Vozila extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1)
+                    .addComponent(pnlPodaci, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -202,25 +217,31 @@ public class Vozila extends javax.swing.JFrame {
         if(entitet == null){
             return;
         }
-       txtNaziv.setText(entitet.getNaziv());
-       txtBoja.setText(entitet.getBoja());
-       txtTablica.setText(entitet.getTablica());
+        txtIme.setText(entitet.getIme());
+        txtPrezime.setText(entitet.getPrezime());
+        txtSpol.setText(entitet.getSpol());
+        txtDob.setText(entitet.getDob().toString());
+        
+        
+        
+        
+        
     }//GEN-LAST:event_lstPodaciValueChanged
 
-    private void txtNazivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNazivActionPerformed
+    private void txtImeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtImeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNazivActionPerformed
+    }//GEN-LAST:event_txtImeActionPerformed
 
-    private void txtBojaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBojaActionPerformed
+    private void txtPrezimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrezimeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtBojaActionPerformed
+    }//GEN-LAST:event_txtPrezimeActionPerformed
 
-    private void txtTablicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTablicaActionPerformed
+    private void txtDobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDobActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtTablicaActionPerformed
+    }//GEN-LAST:event_txtDobActionPerformed
 
     private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
-       entitet =new Vozilo();
+       entitet =new Vozac();
        postaviVrijednostiUEntitet();
         
            try {
@@ -250,7 +271,7 @@ public class Vozila extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPromijeniActionPerformed
 
     private void btnObrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObrisiActionPerformed
-entitet = lstPodaci.getSelectedValue();
+    entitet = lstPodaci.getSelectedValue();
         if(entitet == null){
             return;
         }
@@ -264,6 +285,10 @@ entitet = lstPodaci.getSelectedValue();
            lblPoruka.setText(e.getPoruka());
        }    }//GEN-LAST:event_btnObrisiActionPerformed
 
+    private void txtSpolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSpolActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSpolActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -275,33 +300,48 @@ entitet = lstPodaci.getSelectedValue();
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblPoruka;
-    private javax.swing.JList<Vozilo> lstPodaci;
-    private javax.swing.JTextField txtBoja;
-    private javax.swing.JTextField txtNaziv;
-    private javax.swing.JTextField txtTablica;
+    private javax.swing.JList<Vozac> lstPodaci;
+    private javax.swing.JPanel pnlPodaci;
+    private javax.swing.JTextField txtDob;
+    private javax.swing.JTextField txtIme;
+    private javax.swing.JTextField txtPrezime;
+    private javax.swing.JTextField txtSpol;
     // End of variables declaration//GEN-END:variables
 
     private void ucitajPodatke() {
           
-        DefaultListModel<Vozilo> m = new DefaultListModel<>();
+        DefaultListModel<Vozac> m = new DefaultListModel<>();
         obrada.getPodaci().forEach(s->m.addElement(s));
         lstPodaci.setModel(m);
 
     }
 
     private void ocistiPolja() {
-      
-        entitet.setNaziv("");
-        entitet.setBoja("");
-        entitet.setTablica("");    }
+        
+        for(Component c : pnlPodaci.getComponents()){
+            if(c instanceof JTextField){
+                ((JTextField) c).setText("");
+                
+            }       
+        
+        }
+        lblPoruka.setText("");
+        
+//        entitet.setIme("");
+//        entitet.setPrezime("");
+//        entitet.setSpol("");   
+//        entitet.setDob(null);
+    }
 
     private void postaviVrijednostiUEntitet() {
-        entitet.setNaziv(txtNaziv.getText());
-        entitet.setBoja(txtBoja.getText());
-        entitet.setTablica(txtTablica.getText()); 
+        entitet.setIme(txtIme.getText());
+        entitet.setPrezime(txtPrezime.getText());
+        entitet.setSpol(txtSpol.getText()); 
+        
+        
         obrada.setEntitet(entitet);
 }
 }

@@ -320,7 +320,10 @@ public class Vozaci extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSpolActionPerformed
 
     private void btnTraziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraziActionPerformed
- ucitajPodatke();    }//GEN-LAST:event_btnTraziActionPerformed
+ 
+       ucitajPodatke();
+
+    }//GEN-LAST:event_btnTraziActionPerformed
 
     private void txtUvjetKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUvjetKeyReleased
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
@@ -381,7 +384,7 @@ public class Vozaci extends javax.swing.JFrame {
         entitet.setIme(txtIme.getText());
         entitet.setPrezime(txtPrezime.getText());
         entitet.setSpol(txtSpol.getText()); 
-        
+        entitet.setDob(txtDob.getText());
         
         obrada.setEntitet(entitet);
 }

@@ -41,7 +41,7 @@ public class Izbornik extends javax.swing.JFrame {
 //       }
         jmiOperateri.setVisible(Aplikacija.isAdmin());
 
-        pripremiGraf();
+        
 
     }
 
@@ -54,7 +54,7 @@ public class Izbornik extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlGraf = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jmNaslovGrana = new javax.swing.JMenu();
         jmiVozila = new javax.swing.JMenuItem();
@@ -66,18 +66,15 @@ public class Izbornik extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dankovic APP");
-        setPreferredSize(new java.awt.Dimension(400, 400));
+        setBackground(new java.awt.Color(51, 136, 143));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setForeground(new java.awt.Color(0, 153, 153));
 
-        javax.swing.GroupLayout pnlGrafLayout = new javax.swing.GroupLayout(pnlGraf);
-        pnlGraf.setLayout(pnlGrafLayout);
-        pnlGrafLayout.setHorizontalGroup(
-            pnlGrafLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 435, Short.MAX_VALUE)
-        );
-        pnlGrafLayout.setVerticalGroup(
-            pnlGrafLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 378, Short.MAX_VALUE)
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/taxi.jpg"))); // NOI18N
+
+        jMenuBar1.setBackground(new java.awt.Color(51, 136, 143));
+        jMenuBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jMenuBar1.setForeground(new java.awt.Color(0, 153, 255));
 
         jmNaslovGrana.setText("NASLOV");
 
@@ -130,11 +127,11 @@ public class Izbornik extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlGraf, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlGraf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -162,6 +159,7 @@ public class Izbornik extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JMenu jmNaslovGrana;
@@ -170,33 +168,6 @@ public class Izbornik extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmiVozaci;
     private javax.swing.JMenuItem jmiVozila;
     private javax.swing.JMenuItem jmiVoznje;
-    private javax.swing.JPanel pnlGraf;
     // End of variables declaration//GEN-END:variables
 
-    private void pripremiGraf() {
-
-        ObradaVoznja ov = new ObradaVoznja();
-//        XYSeries series = new XYSeries("XY Chart");
-//        XYSeriesCollection dataset = new XYSeriesCollection(series);
-//        JFreeChart chart = ChartFactory.createTimeSeriesChart("Testing Chart", "Date", "Average Profit", dataset);
-
-        DefaultPieDataset dataset = new DefaultPieDataset();
-        for (Voznja v : ov.getPodaci()) {
-            dataset.setValue(v.getPolaziste() + "->" + v.getOdrediste(), v.getBroj_putnika());
-        }
-
-        JFreeChart chart = ChartFactory.createPieChart(
-                "Odrađene vožnje - broj putnika", // chart title
-                dataset, // data
-                true, //include legend
-                true,
-                false);
-
-        ChartPanel cp = new ChartPanel(chart);
-
-        pnlGraf.setLayout(new BorderLayout());
-        pnlGraf.add(cp, BorderLayout.CENTER);
-        pnlGraf.validate();
-
-    }
 }

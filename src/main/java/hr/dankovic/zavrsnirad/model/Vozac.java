@@ -22,13 +22,16 @@ import javax.persistence.OneToOne;
 public class Vozac extends Entitet{
     private String ime;
     private String prezime;
-    private Integer dob;
+    private String dob;
     private String spol;
 
   
+    
     @OneToOne
     private Vozilo vozilo;
 
+  
+    
     public String getIme() {
         return ime;
     }
@@ -45,13 +48,15 @@ public class Vozac extends Entitet{
         this.prezime = prezime;
     }
 
-    public Integer getDob() {
+    public String getDob() {
         return dob;
     }
 
-    public void setDob(Integer dob) {
+    public void setDob(String dob) {
         this.dob = dob;
     }
+
+  
 
     public String getSpol() {
         return spol;

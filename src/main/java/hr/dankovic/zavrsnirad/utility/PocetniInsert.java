@@ -53,25 +53,26 @@ public class PocetniInsert {
         session.getTransaction().commit();
         session.beginTransaction();
         Faker faker = new Faker();
-        Integer[] dob = {24, 28, 22};
         Vozac v, vozacBMW = null, vozacAUDI = null, vozacRENAULT = null;
         for (int i = 0; i < 3; i++) {
             v = new Vozac();
             v.setIme(faker.name().firstName());
             v.setPrezime(faker.name().lastName());
-            v.setDob(dob[i]);
             v.setSpol("M");
             if (i == 0) {
                 vozacAUDI = v;
                 v.setVozilo(audi);
+                v.setDob("23");
             }
             if (i == 1) {
                 vozacBMW = v;
                 v.setVozilo(bmw);
+                v.setDob("26");
             }
             if (i == 2) {
                 vozacRENAULT = v;
                 v.setVozilo(renault);
+                v.setDob("28");
             }
             session.save(v);
 
@@ -93,7 +94,7 @@ public class PocetniInsert {
                 voznja.setOdrediste("KBC Osijek");
                 voznja.setPolaziste("Sjenjak 32");
                 voznja.setBroj_putnika(4);
-                voznja.setTrajanje(14);
+                voznja.setTrajanje("14");
                 voznja.setCijena(25);
             }
             if (i < 40 && i >= 25) {
@@ -102,7 +103,7 @@ public class PocetniInsert {
                 voznja.setOdrediste("Medulinska 12");
                 voznja.setPolaziste("Kolodvor");
                 voznja.setBroj_putnika(3);
-                voznja.setTrajanje(23);
+                voznja.setTrajanje("23");
                 voznja.setCijena(35);
             }
             if (i < 50 && i >= 40) {
@@ -111,7 +112,7 @@ public class PocetniInsert {
                 voznja.setOdrediste("Vukovarska 74");
                 voznja.setPolaziste("FERIT [K]");
                 voznja.setBroj_putnika(2);
-                voznja.setTrajanje(8);
+                voznja.setTrajanje("8");
                 voznja.setCijena(15);
             }
             session.save(voznja);

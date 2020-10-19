@@ -19,7 +19,14 @@ public class ObradaVozac extends Obrada<Vozac> {
     public List<Vozac> getPodaci() {
         return session.createQuery("from Vozac").list();
     }
-
+    public List<Vozac> getPodaci(String uvjet) {
+       
+    return session.createQuery("from Vozac p" +
+                    " where concat(p.ime, ' ', p.prezime) " + 
+                    " like :uvjet ").setParameter("uvjet", "%"+uvjet+"%")
+                    .setMaxResults(20)
+                    .list();
+ }
     @Override
     protected void kontrolaCreate() throws DankovicException {
         kontrolaIme();
@@ -34,9 +41,9 @@ public class ObradaVozac extends Obrada<Vozac> {
 
     @Override
     protected void kontrolaDelete() throws DankovicException {
-        if(!entitet.getVozilo().getNaziv().isEmpty()){
-            throw  new DankovicException("Vozač se ne može izbrisati jer sadrži jedno ili više vozila.");
-        } 
+         if(!entitet.getVozilo().getNaziv().isEmpty()){
+            throw new DankovicException("Vozač se ne može obrisati jer sadrži jedno ili više vozila.");
+        }
         
     }
 
@@ -59,7 +66,7 @@ public class ObradaVozac extends Obrada<Vozac> {
     }
 
     protected void kontrolaDob() throws DankovicException {
-        if (entitet.getDob() == null) {
+        if (entitet.getDob() == null || entitet.getDob().trim().isEmpty()) {
             throw new DankovicException("Dob obavezna!");
         }
     }

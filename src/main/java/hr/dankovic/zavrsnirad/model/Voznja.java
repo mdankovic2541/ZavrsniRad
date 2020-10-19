@@ -11,7 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import org.hibernate.annotations.ManyToAny;
 
 /**
  *
@@ -20,14 +19,25 @@ import org.hibernate.annotations.ManyToAny;
 @Entity
 public class Voznja extends Entitet {
     private Integer broj_putnika;
-    private Integer trajanje;
+    private String trajanje;
     private Integer cijena;
     private String odrediste;
     private String polaziste;
     
+  
+    
    @ManyToOne
    private Vozac vozac;
-           
+
+
+
+    public String getTrajanje() {
+        return trajanje;
+    }
+
+    public void setTrajanje(String trajanje) {
+        this.trajanje = trajanje;
+    }
 
     public Integer getBroj_putnika() {
         return broj_putnika;
@@ -37,14 +47,6 @@ public class Voznja extends Entitet {
         this.broj_putnika = broj_putnika;
     }
 
-    public Integer getTrajanje() {
-        return trajanje;
-    }
-
-    public void setTrajanje(Integer trajanje) {
-        this.trajanje = trajanje;
-    }
-
     public Integer getCijena() {
         return cijena;
     }
@@ -52,6 +54,10 @@ public class Voznja extends Entitet {
     public void setCijena(Integer cijena) {
         this.cijena = cijena;
     }
+
+     
+
+   
 
     public String getOdrediste() {
         return odrediste;

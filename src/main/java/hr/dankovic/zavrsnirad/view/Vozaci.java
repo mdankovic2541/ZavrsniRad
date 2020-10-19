@@ -31,6 +31,7 @@ public class Vozaci extends javax.swing.JFrame {
      */
     public Vozaci() {
         initComponents();
+        btnTrazi.setText("\uD83D\uDD0E");
         lstPodaci.setCellRenderer(new VozacCellRenderer());
         obrada = new ObradaVozac();
         setTitle(Aplikacija.operater.getIme() + " " + Aplikacija.operater.getPrezime() + " - Vozači");
@@ -66,6 +67,8 @@ public class Vozaci extends javax.swing.JFrame {
         btnObrisi = new javax.swing.JButton();
         txtSpol = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        txtUvjet = new javax.swing.JTextField();
+        btnTrazi = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -75,6 +78,8 @@ public class Vozaci extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(lstPodaci);
+
+        pnlPodaci.setToolTipText("");
 
         jLabel1.setText("Ime");
 
@@ -184,13 +189,31 @@ public class Vozaci extends javax.swing.JFrame {
                 .addComponent(lblPoruka, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        txtUvjet.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtUvjetKeyReleased(evt);
+            }
+        });
+
+        btnTrazi.setText("T");
+        btnTrazi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTraziActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtUvjet, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnTrazi)))
                 .addGap(28, 28, 28)
                 .addComponent(pnlPodaci, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -198,10 +221,17 @@ public class Vozaci extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1)
-                    .addComponent(pnlPodaci, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(pnlPodaci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtUvjet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnTrazi))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -289,6 +319,15 @@ public class Vozaci extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSpolActionPerformed
 
+    private void btnTraziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraziActionPerformed
+ ucitajPodatke();    }//GEN-LAST:event_btnTraziActionPerformed
+
+    private void txtUvjetKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUvjetKeyReleased
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+        ucitajPodatke();
+    }
+    }//GEN-LAST:event_txtUvjetKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -297,6 +336,7 @@ public class Vozaci extends javax.swing.JFrame {
     private javax.swing.JButton btnDodaj;
     private javax.swing.JButton btnObrisi;
     private javax.swing.JButton btnPromijeni;
+    private javax.swing.JButton btnTrazi;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -309,12 +349,13 @@ public class Vozaci extends javax.swing.JFrame {
     private javax.swing.JTextField txtIme;
     private javax.swing.JTextField txtPrezime;
     private javax.swing.JTextField txtSpol;
+    private javax.swing.JTextField txtUvjet;
     // End of variables declaration//GEN-END:variables
 
     private void ucitajPodatke() {
           
         DefaultListModel<Vozac> m = new DefaultListModel<>();
-        obrada.getPodaci().forEach(s->m.addElement(s));
+        obrada.getPodaci(txtUvjet.getText()).forEach(s->m.addElement(s));
         lstPodaci.setModel(m);
 
     }

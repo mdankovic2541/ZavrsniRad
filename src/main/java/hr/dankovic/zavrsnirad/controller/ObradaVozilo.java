@@ -32,6 +32,15 @@ public class ObradaVozilo extends Obrada<Vozilo>{
             return session.createQuery("from Vozilo").list();
 
     }
+   public List<Vozilo> getPodaci(String uvjet) {
+       
+            return session.createQuery("from Vozilo p" +
+                    " where concat(p.naziv) " + 
+                    " like :uvjet ").setParameter("uvjet", "%"+uvjet+"%")
+                    .setMaxResults(20)
+                    .list();
+
+    }
     
     
     @Override

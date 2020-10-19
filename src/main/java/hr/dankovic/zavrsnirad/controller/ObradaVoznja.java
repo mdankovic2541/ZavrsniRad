@@ -34,30 +34,34 @@ public class ObradaVoznja extends Obrada<Voznja>{
 
     @Override
     protected void kontrolaDelete() throws DankovicException {
+        if(!entitet.getVozac().getIme().isEmpty())
+                {
+            throw new DankovicException("Vožnja se ne može obrisati jer sadrži jednog ili vozača.");
+        }
     }
 
 
     private void kontrolaBroj_Putnika() throws DankovicException{
          kontrolaNull(entitet.getBroj_putnika(), "Broj putnika nije definiran!");
-        if(entitet.getBroj_putnika().compareTo(Integer.SIZE) <=0){
-            throw new DankovicException("Broj putnika ne može biti manji ili jednak nuli!");
-        }
+       if(entitet.getBroj_putnika()== null){
+           throw new DankovicException("Broj putnika je obavezan!");
+       }
         
     }
 
     private void kontrolaCijena()throws DankovicException {
         kontrolaNull(entitet.getCijena(), "Cijena nije definirana!");
-        if(entitet.getCijena().compareTo(Integer.SIZE) <=0){
-            throw new DankovicException("Cijena ne može biti manja ili jednaka nuli!");
-        }
+       if(entitet.getCijena()== null){
+           throw new DankovicException("Cijena je obavezna!");
+       }
        
     }
 
     private void kontrolaTrajanje()throws DankovicException {
          kontrolaNull(entitet.getTrajanje(), "Trajanje nije definirano!");
-        if(entitet.getTrajanje().compareTo(Integer.SIZE) <=0){
-            throw new DankovicException("Trajanje ne može biti manje ili jednako nuli!");
-        }
+       if(entitet.getTrajanje()== null || entitet.getTrajanje().trim().isEmpty()){
+           throw new DankovicException("Trajenje je obavezno!");
+       }
         
     }
 

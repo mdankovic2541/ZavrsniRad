@@ -6,8 +6,11 @@
 package hr.dankovic.zavrsnirad.model;
 
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -21,8 +24,7 @@ public class Vozilo extends Entitet{
     private String boja;
     private String tablica;
 
-    
-    
+   
     public String getNaziv() {
         return naziv;
     }

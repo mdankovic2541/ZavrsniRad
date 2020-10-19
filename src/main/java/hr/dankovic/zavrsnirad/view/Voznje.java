@@ -24,7 +24,7 @@ public class Voznje extends javax.swing.JFrame {
        private ObradaVoznja obrada;
        private Voznja entitet;
     /**
-     * Creates new form Vozaci
+     * Creates new form Voznje
      */
     public Voznje() {
         initComponents();
@@ -233,7 +233,9 @@ public class Voznje extends javax.swing.JFrame {
         txtOdrediste.setText(entitet.getOdrediste());
         txtBrojPutnika.setText(entitet.getBroj_putnika().toString());
         txtCijena.setText(entitet.getCijena().toString());
-        txtTrajanje.setText(entitet.getTrajanje().toString());
+        txtTrajanje.setText(entitet.getTrajanje());
+        
+        
         
         
         
@@ -349,8 +351,8 @@ public class Voznje extends javax.swing.JFrame {
         
         }
         lblPoruka.setText("");
-        
-//        entitet.setIme("");
+    
+//     entitet.setIme("");
 //        entitet.setPrezime("");
 //        entitet.setSpol("");   
 //        entitet.setDob(null);
@@ -359,7 +361,7 @@ public class Voznje extends javax.swing.JFrame {
     private void postaviVrijednostiUEntitet() {
         entitet.setPolaziste(txtPolaziste.getText());
         entitet.setOdrediste(txtOdrediste.getText());
-        
+        entitet.setTrajanje(txtTrajanje.getText());
         
         obrada.setEntitet(entitet);
 }

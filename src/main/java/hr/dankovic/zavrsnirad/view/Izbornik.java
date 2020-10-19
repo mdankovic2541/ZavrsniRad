@@ -153,7 +153,7 @@ public class Izbornik extends javax.swing.JFrame {
     new Vozaci().setVisible(true);    }//GEN-LAST:event_jmiVozaciActionPerformed
 
     private void jmiVoznjeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiVoznjeActionPerformed
-        new Voznja().setVisible(true);
+        new Voznje().setVisible(true);
     }//GEN-LAST:event_jmiVoznjeActionPerformed
 
     private void jmiOperateriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiOperateriActionPerformed

@@ -57,7 +57,9 @@ public class ObradaVozilo extends Obrada<Vozilo>{
 
     @Override
     protected void kontrolaDelete() throws DankovicException {
-        
+        if(entitet.getVozaci().size() > 0){
+            throw new DankovicException("Vozilo se ne može obrisati jer ga koristi jedan vozač!");
+        }
     }
 
     private void kontrolaNaziv() throws DankovicException {

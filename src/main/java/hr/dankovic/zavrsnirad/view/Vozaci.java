@@ -7,12 +7,15 @@ package hr.dankovic.zavrsnirad.view;
 
 import hr.dankovic.zavrsnirad.controller.ObradaVozac;
 import hr.dankovic.zavrsnirad.model.Vozac;
+import hr.dankovic.zavrsnirad.model.Vozilo;
 import hr.dankovic.zavrsnirad.utility.DankovicException;
 import java.awt.Component;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -32,10 +35,13 @@ public class Vozaci extends javax.swing.JFrame {
     public Vozaci() {
         initComponents();
         btnTrazi.setText("\uD83D\uDD0E");
+        btnObrisi.setText("\u274C"+ " Obriši");
+        btnPromijeni.setText("\u2611\uFE0F" + " Promijeni");
+        btnDodaj.setText("\u2795" + " Dodaj");
         lstPodaci.setCellRenderer(new VozacCellRenderer());
         obrada = new ObradaVozac();
         setTitle(Aplikacija.operater.getIme() + " " + Aplikacija.operater.getPrezime() + " - Vozači");
-
+        
         ucitajPodatke();
        
       
@@ -67,6 +73,8 @@ public class Vozaci extends javax.swing.JFrame {
         btnObrisi = new javax.swing.JButton();
         txtSpol = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        cmbVozila = new javax.swing.JComboBox<>();
+        lblVozilo = new javax.swing.JLabel();
         txtUvjet = new javax.swing.JTextField();
         btnTrazi = new javax.swing.JButton();
 
@@ -134,6 +142,14 @@ public class Vozaci extends javax.swing.JFrame {
 
         jLabel4.setText("Spol");
 
+        cmbVozila.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbVozilaActionPerformed(evt);
+            }
+        });
+
+        lblVozilo.setText("Vozila");
+
         javax.swing.GroupLayout pnlPodaciLayout = new javax.swing.GroupLayout(pnlPodaci);
         pnlPodaci.setLayout(pnlPodaciLayout);
         pnlPodaciLayout.setHorizontalGroup(
@@ -145,19 +161,21 @@ public class Vozaci extends javax.swing.JFrame {
                     .addComponent(txtPrezime, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtDob, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtIme)
+                    .addComponent(txtSpol, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(pnlPodaciLayout.createSequentialGroup()
                         .addComponent(btnDodaj, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnPromijeni)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnObrisi, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE))
-                    .addComponent(txtSpol, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnObrisi, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))
                     .addGroup(pnlPodaciLayout.createSequentialGroup()
                         .addGroup(pnlPodaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbVozila, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblVozilo))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -180,13 +198,17 @@ public class Vozaci extends javax.swing.JFrame {
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
                 .addComponent(txtSpol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(lblVozilo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cmbVozila, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addGroup(pnlPodaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDodaj)
                     .addComponent(btnPromijeni)
                     .addComponent(btnObrisi))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblPoruka, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(5, 5, 5)
+                .addComponent(lblPoruka, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         txtUvjet.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -208,31 +230,29 @@ public class Vozaci extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtUvjet, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(txtUvjet)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnTrazi)))
-                .addGap(28, 28, 28)
+                        .addComponent(btnTrazi, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(pnlPodaci, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(pnlPodaci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtUvjet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnTrazi))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1))
+                    .addComponent(pnlPodaci, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -253,8 +273,13 @@ public class Vozaci extends javax.swing.JFrame {
         txtDob.setText(entitet.getDob().toString());
         
         
-        
-        
+         DefaultComboBoxModel<Vozilo> mp = (DefaultComboBoxModel<Vozilo>) cmbVozila.getModel();
+        for (int i = 0; i < mp.getSize(); i++) {
+            if (mp.getElementAt(i).getId().equals(entitet.getVozilo().getId())) {
+                cmbVozila.setSelectedIndex(i);
+                break;
+            }
+        }
         
     }//GEN-LAST:event_lstPodaciValueChanged
 
@@ -331,6 +356,11 @@ public class Vozaci extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_txtUvjetKeyReleased
 
+    private void cmbVozilaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbVozilaActionPerformed
+
+
+    }//GEN-LAST:event_cmbVozilaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -340,12 +370,14 @@ public class Vozaci extends javax.swing.JFrame {
     private javax.swing.JButton btnObrisi;
     private javax.swing.JButton btnPromijeni;
     private javax.swing.JButton btnTrazi;
+    private javax.swing.JComboBox<Vozilo> cmbVozila;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblPoruka;
+    private javax.swing.JLabel lblVozilo;
     private javax.swing.JList<Vozac> lstPodaci;
     private javax.swing.JPanel pnlPodaci;
     private javax.swing.JTextField txtDob;
@@ -385,7 +417,9 @@ public class Vozaci extends javax.swing.JFrame {
         entitet.setPrezime(txtPrezime.getText());
         entitet.setSpol(txtSpol.getText()); 
         entitet.setDob(txtDob.getText());
-        
+        entitet.setVozilo((Vozilo)cmbVozila.getSelectedItem());
+
+       
         obrada.setEntitet(entitet);
 }
 }

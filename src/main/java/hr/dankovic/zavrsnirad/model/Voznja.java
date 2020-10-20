@@ -8,6 +8,8 @@ package hr.dankovic.zavrsnirad.model;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -25,10 +27,23 @@ public class Voznja extends Entitet {
     private String polaziste;
     
   
+  
+  
+    @OneToMany(mappedBy = "voznja")
+    private List<Vozac> vozaci = new ArrayList<>();
     
    @ManyToOne
    private Vozac vozac;
 
+    public List<Vozac> getVozaci() {
+        return vozaci;
+    }
+
+    public void setVozaci(List<Vozac> vozaci) {
+        this.vozaci = vozaci;
+    }
+
+   
 
 
     public String getTrajanje() {

@@ -94,7 +94,7 @@ public class Izbornik extends javax.swing.JFrame {
         });
         jmNaslovGrana.add(jmiVozaci);
 
-        jmiVoznje.setText("Voznje");
+        jmiVoznje.setText("Vožnje");
         jmiVoznje.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmiVoznjeActionPerformed(evt);

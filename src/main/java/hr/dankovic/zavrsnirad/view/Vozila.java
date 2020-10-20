@@ -28,6 +28,9 @@ public class Vozila extends javax.swing.JFrame {
     public Vozila() {
         initComponents();
         btnTrazi.setText("\uD83D\uDD0E");
+        btnObrisi.setText("\u274C"+ " Obriši");
+        btnPromijeni.setText("\u2611\uFE0F" + " Promijeni");
+        btnDodaj.setText("\u2795" + " Dodaj");
         lstPodaci.setCellRenderer(new VoziloCellRenderer());
         obrada = new ObradaVozilo();
         setTitle(Aplikacija.operater.getIme() + " " + Aplikacija.operater.getPrezime() + " - Vozila");
@@ -131,7 +134,7 @@ public class Vozila extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnPromijeni)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnObrisi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(btnObrisi, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -201,7 +204,7 @@ public class Vozila extends javax.swing.JFrame {
                             .addComponent(btnTrazi))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
@@ -209,16 +212,16 @@ public class Vozila extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lstPodaciValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstPodaciValueChanged
-//        if(evt.getValueIsAdjusting()){
-//            return;
-//        }
-//        entitet = lstPodaci.getSelectedValue();
-//        if(entitet == null){
-//            return;
-//        }
-//       txtNaziv.setText(entitet.getNaziv());
-//       txtBoja.setText(entitet.getBoja());
-//       txtTablica.setText(entitet.getTablica());
+        if(evt.getValueIsAdjusting()){
+            return;
+       }
+       entitet = lstPodaci.getSelectedValue();
+        if(entitet == null){
+           return;
+       }
+      txtNaziv.setText(entitet.getNaziv());
+      txtBoja.setText(entitet.getBoja());
+       txtTablica.setText(entitet.getTablica());
     }//GEN-LAST:event_lstPodaciValueChanged
 
     private void txtNazivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNazivActionPerformed
@@ -307,7 +310,6 @@ entitet = lstPodaci.getSelectedValue();
     private void ucitajPodatke() {
           
         DefaultListModel<Vozilo> m = new DefaultListModel<>();
-        
         obrada.getPodaci(txtUvjet.getText()).forEach(s->m.addElement(s));
         lstPodaci.setModel(m);
 

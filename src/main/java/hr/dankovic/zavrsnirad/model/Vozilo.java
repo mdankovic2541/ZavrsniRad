@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 /**
@@ -24,7 +25,19 @@ public class Vozilo extends Entitet{
     private String boja;
     private String tablica;
 
-   
+     
+    @OneToMany(mappedBy = "vozilo")
+     private List<Vozac> vozaci = new ArrayList<>();
+
+    public List<Vozac> getVozaci() {
+        return vozaci;
+    }
+
+    public void setVozaci(List<Vozac> vozaci) {
+        this.vozaci = vozaci;
+    }
+     
+     
     public String getNaziv() {
         return naziv;
     }

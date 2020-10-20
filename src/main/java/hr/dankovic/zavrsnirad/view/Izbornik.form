@@ -40,7 +40,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jmiVoznje">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Voznje"/>
+                <Property name="text" type="java.lang.String" value="Vo&#x17e;nje"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmiVoznjeActionPerformed"/>

@@ -20,15 +20,30 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class Vozac extends Entitet{
+
+    @ManyToOne
+    private Voznja voznja;
     private String ime;
     private String prezime;
     private String dob;
     private String spol;
 
   
+    @OneToMany(mappedBy = "vozac")
+    private List<Voznja> voznje = new ArrayList<>();
+    
     
     @OneToOne
+    @ManyToOne
     private Vozilo vozilo;
+
+    public List<Voznja> getVoznje() {
+        return voznje;
+    }
+
+    public void setVoznje(List<Voznja> voznje) {
+        this.voznje = voznje;
+    }
 
   
     

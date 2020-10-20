@@ -34,9 +34,9 @@ public class ObradaVoznja extends Obrada<Voznja>{
 
     @Override
     protected void kontrolaDelete() throws DankovicException {
-        if(!entitet.getVozac().getIme().isEmpty())
+        if(entitet.getVozaci().size() > 0)
                 {
-            throw new DankovicException("Vožnja se ne može obrisati jer sadrži jednog ili vozača.");
+            throw new DankovicException("Vožnja se ne može obrisati jer sadrži vozača.");
         }
     }
 

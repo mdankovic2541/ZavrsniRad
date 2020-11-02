@@ -6,11 +6,13 @@
 package hr.dankovic.zavrsnirad.view;
 
 import hr.dankovic.zavrsnirad.controller.ObradaVozilo;
+import hr.dankovic.zavrsnirad.model.Vozac;
 import hr.dankovic.zavrsnirad.model.Vozilo;
 import hr.dankovic.zavrsnirad.utility.DankovicException;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 
 /**
@@ -222,6 +224,8 @@ public class Vozila extends javax.swing.JFrame {
       txtNaziv.setText(entitet.getNaziv());
       txtBoja.setText(entitet.getBoja());
        txtTablica.setText(entitet.getTablica());
+       
+      
     }//GEN-LAST:event_lstPodaciValueChanged
 
     private void txtNazivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNazivActionPerformed

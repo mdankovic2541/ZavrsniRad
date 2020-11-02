@@ -12,6 +12,7 @@ import hr.dankovic.zavrsnirad.model.Vozilo;
 import hr.dankovic.zavrsnirad.utility.DankovicException;
 import hr.dankovic.zavrsnirad.utility.HibernateUtil;
 import hr.dankovic.zavrsnirad.utility.PocetniInsert;
+import hr.dankovic.zavrsnirad.utility.SplashScreen;
 import hr.dankovic.zavrsnirad.view.Autorizacija;
 import hr.dankovic.zavrsnirad.view.Izbornik;
 import java.time.Clock;
@@ -28,8 +29,10 @@ public class Start {
 
     public static void main(String[] args) {
 
-        
-        new Autorizacija().setVisible(true);
+         SplashScreen sC = new SplashScreen();
+        sC.setLocationRelativeTo(null);
+        sC.setVisible(true);
+     //   new Autorizacija().setVisible(true);
         
         
       //PocetniInsert.izvedi();

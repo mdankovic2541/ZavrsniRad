@@ -6,6 +6,7 @@
 package hr.dankovic.zavrsnirad.view;
 
 import hr.dankovic.zavrsnirad.controller.ObradaVozac;
+import hr.dankovic.zavrsnirad.controller.ObradaVozilo;
 import hr.dankovic.zavrsnirad.model.Vozac;
 import hr.dankovic.zavrsnirad.model.Vozilo;
 import hr.dankovic.zavrsnirad.utility.DankovicException;
@@ -42,6 +43,12 @@ public class Vozaci extends javax.swing.JFrame {
         obrada = new ObradaVozac();
         setTitle(Aplikacija.operater.getIme() + " " + Aplikacija.operater.getPrezime() + " - Vozači");
         
+         DefaultComboBoxModel<Vozilo> ku = new DefaultComboBoxModel<>();
+        new ObradaVozilo().getPodaci().forEach(s -> {
+            ku.addElement(s);
+        });
+        cmbVozila.setRenderer(new VoziloCellRenderer());
+        cmbVozila.setModel(ku);
         ucitajPodatke();
        
       
@@ -283,67 +290,6 @@ public class Vozaci extends javax.swing.JFrame {
         
     }//GEN-LAST:event_lstPodaciValueChanged
 
-    private void txtImeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtImeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtImeActionPerformed
-
-    private void txtPrezimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrezimeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPrezimeActionPerformed
-
-    private void txtDobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDobActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDobActionPerformed
-
-    private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
-       entitet =new Vozac();
-       postaviVrijednostiUEntitet();
-        
-           try {
-               obrada.create();
-               ucitajPodatke();
-               ocistiPolja();
-           } catch (DankovicException ex) {
-                lblPoruka.setText(ex.getPoruka());
-           }
-       
-    }//GEN-LAST:event_btnDodajActionPerformed
-
-    private void btnPromijeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromijeniActionPerformed
-        entitet = lstPodaci.getSelectedValue();
-        if(entitet == null){
-            return;
-        }
-        postaviVrijednostiUEntitet();
-       try{
-           obrada.update();
-           ucitajPodatke();
-           ocistiPolja();
-           
-       }catch(DankovicException e){
-           lblPoruka.setText(e.getPoruka());
-       }
-    }//GEN-LAST:event_btnPromijeniActionPerformed
-
-    private void btnObrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObrisiActionPerformed
-    entitet = lstPodaci.getSelectedValue();
-        if(entitet == null){
-            return;
-        }
-       obrada.setEntitet(entitet);
-       try{
-           obrada.delete();
-           ucitajPodatke();
-           ocistiPolja();
-           
-       }catch(DankovicException e){
-           lblPoruka.setText(e.getPoruka());
-       }    }//GEN-LAST:event_btnObrisiActionPerformed
-
-    private void txtSpolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSpolActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSpolActionPerformed
-
     private void btnTraziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraziActionPerformed
  
        ucitajPodatke();
@@ -358,8 +304,69 @@ public class Vozaci extends javax.swing.JFrame {
 
     private void cmbVozilaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbVozilaActionPerformed
 
-
     }//GEN-LAST:event_cmbVozilaActionPerformed
+
+    private void txtSpolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSpolActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSpolActionPerformed
+
+    private void btnObrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObrisiActionPerformed
+        entitet = lstPodaci.getSelectedValue();
+        if(entitet == null){
+            return;
+        }
+        obrada.setEntitet(entitet);
+        try{
+            obrada.delete();
+            ucitajPodatke();
+            ocistiPolja();
+
+        }catch(DankovicException e){
+            lblPoruka.setText(e.getPoruka());
+        }
+    }//GEN-LAST:event_btnObrisiActionPerformed
+
+    private void btnPromijeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromijeniActionPerformed
+        entitet = lstPodaci.getSelectedValue();
+        if(entitet == null){
+            return;
+        }
+        postaviVrijednostiUEntitet();
+        try{
+            obrada.update();
+            ucitajPodatke();
+            ocistiPolja();
+
+        }catch(DankovicException e){
+            lblPoruka.setText(e.getPoruka());
+        }
+    }//GEN-LAST:event_btnPromijeniActionPerformed
+
+    private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
+        entitet =new Vozac();
+        postaviVrijednostiUEntitet();
+
+        try {
+            obrada.create();
+            ucitajPodatke();
+            ocistiPolja();
+        } catch (DankovicException ex) {
+            lblPoruka.setText(ex.getPoruka());
+        }
+
+    }//GEN-LAST:event_btnDodajActionPerformed
+
+    private void txtDobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDobActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDobActionPerformed
+
+    private void txtPrezimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrezimeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPrezimeActionPerformed
+
+    private void txtImeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtImeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtImeActionPerformed
 
     /**
      * @param args the command line arguments

@@ -7,6 +7,7 @@ package hr.dankovic.zavrsnirad.view;
 
 import hr.dankovic.zavrsnirad.controller.ObradaOperater;
 import hr.dankovic.zavrsnirad.model.Operater;
+import hr.dankovic.zavrsnirad.utility.SplashScreen;
 import java.awt.event.KeyEvent;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
@@ -23,7 +24,7 @@ public class Autorizacija extends javax.swing.JFrame {
      */
     public Autorizacija() {
         initComponents();
-
+    
         txtEmail.requestFocus();
         txtEmail.setText("mdankovic@gmail.com");
         pswLozinka.requestFocus();

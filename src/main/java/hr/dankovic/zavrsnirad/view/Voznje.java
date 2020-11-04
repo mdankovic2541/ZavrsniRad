@@ -74,15 +74,14 @@ public class Voznje extends javax.swing.JFrame {
         btnObrisi = new javax.swing.JButton();
         txtTrajanje = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jcbBrojPutnika = new javax.swing.JComboBox<>();
         lblBrojPutnika = new javax.swing.JLabel();
         cmbVozaci = new javax.swing.JComboBox<>();
         lvlVozaci = new javax.swing.JLabel();
-        jcbCijena = new javax.swing.JComboBox<>();
+        txtCijena = new javax.swing.JTextField();
+        txtBrojPutnika = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(java.awt.Color.gray);
-        setPreferredSize(new java.awt.Dimension(726, 458));
 
         lstPodaci.setSelectionForeground(new java.awt.Color(153, 153, 153));
         lstPodaci.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
@@ -142,21 +141,19 @@ public class Voznje extends javax.swing.JFrame {
 
         jLabel6.setText("Trajanje");
 
-        jcbBrojPutnika.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
-        jcbBrojPutnika.addActionListener(new java.awt.event.ActionListener() {
+        lblBrojPutnika.setText("Broj putnika");
+
+        cmbVozaci.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcbBrojPutnikaActionPerformed(evt);
+                cmbVozaciActionPerformed(evt);
             }
         });
 
-        lblBrojPutnika.setText("Broj putnika");
-
         lvlVozaci.setText("Vozači");
 
-        jcbCijena.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "20", "25", "30", "35", "40", "45", "50", "55", "60", "65", "70", "75", "80", "85", "90", "95", "100", "105", "110", "115", "120", "125", "130", "135", "140", "145", "150", "155", "160", "165", "170", "175", "180", "185", "190", "195", "200", " " }));
-        jcbCijena.addActionListener(new java.awt.event.ActionListener() {
+        txtCijena.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcbCijenaActionPerformed(evt);
+                txtCijenaActionPerformed(evt);
             }
         });
 
@@ -167,35 +164,31 @@ public class Voznje extends javax.swing.JFrame {
             .addGroup(pnlPodaciLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlPodaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlPodaciLayout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(btnDodaj, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnPromijeni, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnObrisi, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtBrojPutnika, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPoruka, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pnlPodaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(txtCijena, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(txtTrajanje, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
                         .addComponent(txtPolaziste, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(txtOdrediste, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblPoruka, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pnlPodaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlPodaciLayout.createSequentialGroup()
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jcbCijena, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlPodaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPodaciLayout.createSequentialGroup()
+                    .addGroup(pnlPodaciLayout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addGroup(pnlPodaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlPodaciLayout.createSequentialGroup()
                                 .addComponent(lvlVozaci)
                                 .addGap(18, 18, 18)
                                 .addComponent(cmbVozaci, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(pnlPodaciLayout.createSequentialGroup()
-                                .addComponent(lblBrojPutnika)
+                                .addComponent(btnDodaj, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnPromijeni, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jcbBrojPutnika, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(btnObrisi, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(lblBrojPutnika))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlPodaciLayout.setVerticalGroup(
@@ -214,14 +207,14 @@ public class Voznje extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtTrajanje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnlPodaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jcbCijena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(pnlPodaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblBrojPutnika)
-                    .addComponent(jcbBrojPutnika, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtCijena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblBrojPutnika)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtBrojPutnika, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
                 .addGroup(pnlPodaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lvlVozaci)
                     .addComponent(cmbVozaci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -270,6 +263,8 @@ public class Voznje extends javax.swing.JFrame {
         txtPolaziste.setText(entitet.getPolaziste());
         txtOdrediste.setText(entitet.getOdrediste());     
         txtTrajanje.setText(entitet.getTrajanje());
+        txtCijena.setText(entitet.getCijena());
+        txtBrojPutnika.setText(entitet.getBroj_putnika());
         
         
         DefaultComboBoxModel<Vozac> v = (DefaultComboBoxModel<Vozac>) cmbVozaci.getModel();
@@ -345,13 +340,13 @@ public class Voznje extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTrajanjeActionPerformed
 
-    private void jcbBrojPutnikaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbBrojPutnikaActionPerformed
+    private void cmbVozaciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbVozaciActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jcbBrojPutnikaActionPerformed
+    }//GEN-LAST:event_cmbVozaciActionPerformed
 
-    private void jcbCijenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbCijenaActionPerformed
+    private void txtCijenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCijenaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jcbCijenaActionPerformed
+    }//GEN-LAST:event_txtCijenaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -367,13 +362,13 @@ public class Voznje extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JComboBox<String> jcbBrojPutnika;
-    private javax.swing.JComboBox<String> jcbCijena;
     private javax.swing.JLabel lblBrojPutnika;
     private javax.swing.JLabel lblPoruka;
     private javax.swing.JList<Voznja> lstPodaci;
     private javax.swing.JLabel lvlVozaci;
     private javax.swing.JPanel pnlPodaci;
+    private javax.swing.JTextField txtBrojPutnika;
+    private javax.swing.JTextField txtCijena;
     private javax.swing.JTextField txtOdrediste;
     private javax.swing.JTextField txtPolaziste;
     private javax.swing.JTextField txtTrajanje;
@@ -408,8 +403,8 @@ public class Voznje extends javax.swing.JFrame {
         entitet.setPolaziste(txtPolaziste.getText());
         entitet.setOdrediste(txtOdrediste.getText());
         entitet.setTrajanje(txtTrajanje.getText());
-        entitet.setBroj_putnika((Integer) jcbBrojPutnika.getSelectedItem());
-        entitet.setCijena((Integer) jcbCijena.getSelectedItem());
+        entitet.setBroj_putnika(txtBrojPutnika.getText());
+        entitet.setCijena(txtCijena.getText());
         entitet.setVozac((Vozac) cmbVozaci.getSelectedItem());
         
         obrada.setEntitet(entitet);

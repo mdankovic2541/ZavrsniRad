@@ -20,9 +20,9 @@ import javax.persistence.OneToOne;
  */
 @Entity
 public class Voznja extends Entitet {
-    private Integer broj_putnika;
+    private String broj_putnika;
     private String trajanje;
-    private Integer cijena;
+    private String cijena;
     private String odrediste;
     private String polaziste;
     
@@ -54,21 +54,23 @@ public class Voznja extends Entitet {
         this.trajanje = trajanje;
     }
 
-    public Integer getBroj_putnika() {
+    public String getBroj_putnika() {
         return broj_putnika;
     }
 
-    public void setBroj_putnika(Integer broj_putnika) {
+    public void setBroj_putnika(String broj_putnika) {
         this.broj_putnika = broj_putnika;
     }
 
-    public Integer getCijena() {
+    public String getCijena() {
         return cijena;
     }
 
-    public void setCijena(Integer cijena) {
+    public void setCijena(String cijena) {
         this.cijena = cijena;
     }
+
+ 
 
      
 

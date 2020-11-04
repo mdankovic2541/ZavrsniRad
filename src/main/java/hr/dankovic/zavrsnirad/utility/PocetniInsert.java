@@ -93,27 +93,27 @@ public class PocetniInsert {
                 voznja.setVozac(vozacAUDI);
                 voznja.setOdrediste("KBC Osijek");
                 voznja.setPolaziste("Sjenjak 32");
-                voznja.setBroj_putnika(4);
+                voznja.setBroj_putnika("4");
                 voznja.setTrajanje("14");
-                voznja.setCijena(25);
+                voznja.setCijena("25");
             }
             if (i < 40 && i >= 25) {
                 voznjaBMW.add(voznja);
                 voznja.setVozac(vozacBMW);
                 voznja.setOdrediste("Medulinska 12");
                 voznja.setPolaziste("Kolodvor");
-                voznja.setBroj_putnika(3);
+                voznja.setBroj_putnika("3");
                 voznja.setTrajanje("23");
-                voznja.setCijena(35);
+                voznja.setCijena("35");
             }
             if (i < 50 && i >= 40) {
                 voznjaRENAULT.add(voznja);
                 voznja.setVozac(vozacRENAULT);
                 voznja.setOdrediste("Vukovarska 74");
                 voznja.setPolaziste("FERIT [K]");
-                voznja.setBroj_putnika(2);
+                voznja.setBroj_putnika("2");
                 voznja.setTrajanje("8");
-                voznja.setCijena(15);
+                voznja.setCijena("15");
             }
             session.save(voznja);
         }

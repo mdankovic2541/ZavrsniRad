@@ -43,7 +43,7 @@ public class ObradaVoznja extends Obrada<Voznja>{
 
     private void kontrolaBroj_Putnika() throws DankovicException{
          kontrolaNull(entitet.getBroj_putnika(), "Broj putnika nije definiran!");
-       if(entitet.getBroj_putnika()== null){
+       if(entitet.getBroj_putnika()== null|| entitet.getBroj_putnika().trim().isEmpty()){
            throw new DankovicException("Broj putnika je obavezan!");
        }
         
@@ -51,7 +51,7 @@ public class ObradaVoznja extends Obrada<Voznja>{
 
     private void kontrolaCijena()throws DankovicException {
         kontrolaNull(entitet.getCijena(), "Cijena nije definirana!");
-       if(entitet.getCijena()== null){
+       if(entitet.getCijena()== null|| entitet.getCijena().trim().isEmpty()){
            throw new DankovicException("Cijena je obavezna!");
        }
        
